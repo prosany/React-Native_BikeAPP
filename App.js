@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, View, } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import BikesList from './components/BikesList';
 import Header from './components/Header';
 
@@ -21,6 +21,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
 
 });
