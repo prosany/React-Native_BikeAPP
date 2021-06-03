@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList, Dimensions } from 'react-native';
+import { View, FlatList, Dimensions } from 'react-native';
 import BikeItem from "../BikeItems";
 
 import styles from './styles';
 import bikes from './bikes';
 
-const BikesList = (props) => {
+const BikesList = () => {
     return (
         <View style={styles.container}>
             <FlatList
