@@ -1,10 +1,18 @@
-import React from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ImageBackground, Image } from 'react-native';
 import StyledButton from "../StyledButton";
 import styles from './styles';
 
 const BikeItems = (props) => {
-  const { name, tagline, taglineCTA, image } = props.bike;
+  const { name, tagline, taglineCTA, image, dis } = props.bike;
+  const [conifrmOrder, setConfirmOrder] = useState(null);
+
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  const yourFunction = async () => {
+    await delay(5000);
+    setConfirmOrder(null);
+  };
+
   return (
     <View style={styles.bikeContainer}>
       <ImageBackground
@@ -13,30 +21,39 @@ const BikeItems = (props) => {
       />
 
       <View style={styles.titles}>
-        <Text style={styles.title}>{name}</Text>
-        <Text style={styles.subtitle}>
-          {tagline}
-          {' '}
-          <Text style={styles.subtitleCTA}>
-            {taglineCTA}
-          </Text>
-        </Text>
+        {conifrmOrder ?
+          <View style={styles.confirmNote}>
+            <Text style={styles.confirmOrder}>Your Order is Confirmed!</Text>
+            <Text style={styles.confirmOrderP}>We will send you a confirmation email as soon as your order ship.</Text>
+          </View> :
+          <View style={styles.confirmNote}>
+            <Text style={styles.confirmOrder}>{name}</Text>
+            <Text style={styles.subtitle}>
+              {tagline}
+              {' '}
+              <Text style={styles.subtitleCTA}>
+                {taglineCTA}
+              </Text>
+            </Text>
+          </View>
+        }
       </View>
 
       <View style={styles.buttonsContainer}>
         <StyledButton
           type="primary"
-          content={"Custom Order"}
+          content={"Order Now"}
           onPress={() => {
-            console.warn("Custom Order was pressed");
+            setConfirmOrder(true);
+            yourFunction();
           }}
         />
 
         <StyledButton
           type="secondary"
-          content={"Existing Inventory"}
+          content={"Show Details"}
           onPress={() => {
-            console.warn("Existing Inventory was pressed");
+            alert(`${dis}`);
           }}
         />
       </View>
@@ -46,4 +63,3 @@ const BikeItems = (props) => {
 };
 
 export default BikeItems;
-
