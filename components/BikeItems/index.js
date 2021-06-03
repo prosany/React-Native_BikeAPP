@@ -1,19 +1,48 @@
 import React from 'react';
-import {styleSheet} from 'react-native';
-import { Text, View, ImageBackground } from 'react-native';
-import suzuki from '../../assets/images/suzuki-model1.jpg';
+import { View, Text, ImageBackground } from 'react-native';
+import StyledButton from "../StyledButton";
 import styles from './styles';
 
-const BikeItems = ()=>{
-    return(
-         <View style={styles.carContainer}>
-       <ImageBackground source={suzuki} style={styles.image}></ImageBackground>
-         <View style={styles.titles}>
-          <Text style={styles.title}>Model S</Text>
-          <Text style={styles.subtitle}>Starting at $70,230</Text>
-         </View>
+const BikeItems = (props) => {
+  const { name, tagline, taglineCTA, image } = props.bike;
+  return (
+    <View style={styles.bikeContainer}>
+      <ImageBackground
+        source={image}
+        style={styles.image}
+      />
+
+      <View style={styles.titles}>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.subtitle}>
+          {tagline}
+          {' '}
+          <Text style={styles.subtitleCTA}>
+            {taglineCTA}
+          </Text>
+        </Text>
       </View>
-    );
+
+      <View style={styles.buttonsContainer}>
+        <StyledButton
+          type="primary"
+          content={"Custom Order"}
+          onPress={() => {
+            console.warn("Custom Order was pressed");
+          }}
+        />
+
+        <StyledButton
+          type="secondary"
+          content={"Existing Inventory"}
+          onPress={() => {
+            console.warn("Existing Inventory was pressed");
+          }}
+        />
+      </View>
+
+    </View>
+  );
 };
 
 export default BikeItems;

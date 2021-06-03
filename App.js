@@ -1,16 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import suzuki from './assets/images/suzuki-model1.jpg'
-import  BikeItems from './components/BikeItems'
+import { StyleSheet, View, } from 'react-native';
+import BikesList from './components/BikesList';
+import Header from './components/Header';
 
 export default function App() {
   return (
     <View style={styles.container}>
-    
-    <BikeItems/>
-
-      <StatusBar style="auto"/>
+      <Header />
+      <BikesList />
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -22,5 +21,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
- 
+
 });
